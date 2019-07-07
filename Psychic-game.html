@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Psychicgame</title>
+
+</head>
+
+<body>
+    
+    
+    <h1>The Psychic Game</h1>
+
+    <h2>Guess what letter I'm thinking of!</h2>
+    
+    <span>Wins:</span><span id="num-of-wins"></span>
+
+    <br />
+
+    <span>Losses:</span><span id="num-of-losses"></span>
+
+    <br />
+
+    <span>Guesses Left:</span><span id="guesses-left"></span>
+
+    <br />
+
+    <span>Guesses Made:</span><span id="guesses-made"></span>
+    
+
+        <script type="text/javascript">
+
+ 
+            var computerChoices = ["a","b","c","d","e"] ;
+            var computerLetter;
+
+               
+            var win = 0;
+            var loss = 0;
+            var totalGuess = 10;
+            var madeGuess = 0;
+            var leftGuess = totalGuess;
+
+            function startGame() {
+                console.log(`Wins: ${win} & Losses: ${loss}`);
+                //Reset all values to start game
+                computerLetter = computerChoices[Math.floor(Math.random() * computerChoices.length)]; 
+                madeGuess = 0;
+                leftGuess = totalGuess;
+                alert("Ready to play!")
+            }
+
+            startGame();
+                
+            document.querySelector("#num-of-losses").innerHTML = loss; 
+            
+            document.querySelector("#num-of-wins").innerHTML = win;
+
+            document.querySelector("#guesses-made").innerHTML = madeGuess;
+
+            document.querySelector("#guesses-left").innerHTML = leftGuess;  
+
+
+            document.onkeyup = function(event) {
+                var userLetter = event.key;  
+
+                if (computerLetter == userLetter) {
+                    alert("You won!");
+                    win = win + 1 ;
+                    startGame();
+                }
+
+                else {
+                    alert("You guessed wrong!")
+                    madeGuess = madeGuess + 1 ;
+                    leftGuess = leftGuess - 1 ; 
+                    if (leftGuess == 0 ) {
+                        alert("You lose!");
+                        loss = loss + 1 ; 
+                        startGame();
+
+                    }
+                }
+
+            }
+
+
+      </script>
+</body>
+</html>
